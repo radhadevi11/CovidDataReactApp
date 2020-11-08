@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+ #searchResults {
+        border: 2px solid black;
+        padding: 3px;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #searchResults td, #searchResults th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #searchResults tr:nth-child(even){background-color: #f2f2f2;}
+
+    #searchResults tr:hover {background-color: #ddd;}
+
+    #searchResults th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }

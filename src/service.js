@@ -8,7 +8,7 @@ export default function getCovidData(fromDate, toDate) {
         console.log(request.responseText);
     }
     var jsonResponse = JSON.parse(request.responseText);*/
-    return window.fetch("https://api.covid19api.com/country/india?from="+fromDate+"&to="+toDate)
+    return window.fetch("https://api.covid19api.com/country/india?from="+fromDate.toISOString()+"&to="+toDate.toISOString())
             .then(respose => respose.json())
             .then(data => convertToCovidEntries(data));
     /**/
@@ -19,21 +19,13 @@ function convertToCovidEntries(jsonResponse) {
     var coviddetails = [];
     jsonResponse.forEach((item) => { 
             coviddetails.push(new covidentry(
-            item.Date,
+            item.Date.slice(0,10),
             item.Confirmed,
             item.Deaths,
             item.Recovered
+            
         ))
     }
     )
-    for(var i = 0; i < jsonResponse.length; i++) {
-        coviddetails.push(new covidentry(
-            jsonResponse[i].Date,
-            jsonResponse[i].Confirmed,
-            jsonResponse[i].Deaths,
-            jsonResponse[i].Recovered
-        ));
-    }
-    
     return coviddetails;
 }

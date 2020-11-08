@@ -1,4 +1,5 @@
 import React from 'react';
+import DateComponent from './DateComponent';
 
 export default class CovidSearchForm extends React.Component{
     constructor(props) {
@@ -6,25 +7,24 @@ export default class CovidSearchForm extends React.Component{
         this.state = {fromDate : null, toDate : null};
 
     }
-    fromDateHandleChange(event) {
-        this.setState({fromDate: event.target.value});
-    }
-    toDateHandleChange(event) {
-        this.setState({toDate: event.target.value});
-    }
     handleSubmit() {
+        console.log("From date:"+this.state.fromDate+" to date:"+this.state.toDate);
        this.props.onSubmit(this.state.fromDate, this.state.toDate);
     }
     render() {
         return(<div>
-                From Date :
-                <input type = "text" id = "fromDate" value = {this.state.value} 
-                onChange = {(event) => this.fromDateHandleChange(event)}>
-                    </input><br/>
-                To Date :
-                <input type = "text" id = "toDate" value = {this.state.value} 
-                onChange = {(event) => this.toDateHandleChange(event)}>
-                    </input><br/>
+            
+                <DateComponent 
+                onChange= {(date) => this.setState({fromDate : date})} 
+                date={this.state.fromDate}
+                label="From Date"/>
+
+                <DateComponent 
+                onChange= {(date) => this.setState({toDate : date})} 
+                date={this.state.toDate}
+                label="To Date"
+                />
+                
                 <button type = "submit" onClick = {() => this.handleSubmit()}>
                     Get Covid Details</button>
             </div>)
